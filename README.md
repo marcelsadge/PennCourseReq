@@ -1,4 +1,4 @@
-# Penn Recs 
+# PennCourseReq
 
 A course and schedule recommendation system for Penn students.
 
