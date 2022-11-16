@@ -4,8 +4,14 @@ body {
 
 .HomePage {
   text-align: center;
+  background-color: white;
+  padding: 100px;
+  margin-top: 100px;
+  margin-left: 200px;
+  margin-right: 200px;
+  border-radius: 20px;
 }
 
 .Title {
-  color: #7872cf;
+  color: #161618;
 }
