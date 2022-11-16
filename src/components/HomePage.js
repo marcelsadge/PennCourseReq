@@ -28,6 +28,8 @@ function HomePage() {
         registerEmail,
         registerPassword
       );
+      setEmail("");
+      setPassword("");
       console.log(user);
     } catch (error) {
       console.log(error.message);
@@ -41,6 +43,8 @@ function HomePage() {
         loginEmail,
         loginPassword
       );
+      setLoginEmail("");
+      setLoginPassword("");
       console.log(user);
     } catch (error) {
       console.log(error.message);
@@ -65,12 +69,15 @@ function HomePage() {
         </div>
         <div>
           <h3> Register Student</h3>
-          <input 
+          <input
+            value={registerEmail}
             placeholder="Email" 
             onChange={(event) => {
               setEmail(event.target.value);
             }}/>
           <input 
+            type="password"
+            value={registerPassword}
             placeholder="Password" 
             onChange={(event) => {
               setPassword(event.target.value);
@@ -84,12 +91,15 @@ function HomePage() {
 
         <div>
           <h3> Login Student</h3>
-          <input 
+          <input
+            value={loginEmail}
             placeholder="Email."
             onChange={(event) => {
               setLoginEmail(event.target.value);
             }}/>
-          <input 
+          <input
+            value={loginPassword}
+            type="password"
             placeholder="Password."
             onChange={(event) => {
               setLoginPassword(event.target.value);
