@@ -5,10 +5,13 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 import { auth } from "../firebase-config";
 
 function HomePage() {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({});
   const [registerEmail, setEmail] = useState("");
   const [registerPassword, setPassword] = useState("");
@@ -45,6 +48,7 @@ function HomePage() {
       );
       setLoginEmail("");
       setLoginPassword("");
+      navigate("/rec");
       console.log(user);
     } catch (error) {
       console.log(error.message);
