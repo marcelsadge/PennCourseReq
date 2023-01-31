@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getAllCourses } from "../backend/coursesApi";
 
 function RecPage({ courseList }) {
     const [courseData, setCourseData] = useState(courseList);
