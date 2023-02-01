@@ -83,6 +83,9 @@ function RecPage({ courseList }) {
                 <button onClick={refreshPage}>
                     Reload
                 </button>
+                <button onClick={getAllCourses}>
+                    Test
+                </button>
             </div>
             <pre>
                 {JSON.stringify(courseData, null, 2)}

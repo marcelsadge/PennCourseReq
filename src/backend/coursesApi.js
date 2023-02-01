@@ -10,9 +10,11 @@ export async function getAllCourses() {
     )
       .then((response) => response.json())
       .then((result) => {
+        console.log("x")
         return result.data;
       });
   } catch (error) {
+    console.log(error)
     return;
   }
 }
@@ -61,7 +63,7 @@ export async function getCourseByCode(courseCode) {
 
 export async function getCourseByCodeAndSemester(semester, courseCode) {
   
-  if (courseCode == null) {
+  if (courseCode == null || semester == null) {
     return;
   }
 
@@ -84,7 +86,7 @@ export async function getCourseByCodeAndSemester(semester, courseCode) {
 
 export async function getSectionByCode(sectionCode) {
   
-  if (courseCode == null) {
+  if (sectionCode == null) {
     return;
   }
 
@@ -107,7 +109,7 @@ export async function getSectionByCode(sectionCode) {
 
 export async function getSectionByCodeAndSemester(semester, sectionCode) {
   
-  if (courseCode == null) {
+  if (sectionCode == null || semester == null) {
     return;
   }
 
