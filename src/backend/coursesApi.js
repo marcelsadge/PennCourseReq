@@ -19,6 +19,23 @@ export async function getAllCourses() {
   }
 }
 
+export async function getAttributes() {
+  const url = BASE_URL + "/api/base/attributes/";
+  try {
+   const data = await fetch(url,
+     {
+       method: "GET",
+     }
+   )
+     .then((response) => response.json())
+     .then((result) => {
+       return result.data;
+     });
+    } catch (error) {
+      return;
+    }
+}
+
 export async function searchForCourse(searchQuery) {
   const url = searchQuery === "" ? BASE_URL + "/api/base/current/search/courses/" :
    BASE_URL + "/api/base/current/search/courses/?" + new URLSearchParams({search: searchQuery})
