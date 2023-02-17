@@ -61,62 +61,71 @@ function HomePage() {
 
   return (
     <div>
-      <div className="Title">
-        <h1>PennCourseReq</h1>
+      <div className="NavBar">
+        <div className="Title">
+          <h1>PennCourseReq</h1>
+          <div className="Status">
+            {user?.email}
+          </div>
+        </div>
       </div>
       <div className="HomePage">
-        <div>
-          <h3>
-            Current User:
-          </h3>
-          {user?.email}
-        </div>
-        <div>
-          <h3> Register Student</h3>
-          <input
-            value={registerEmail}
-            placeholder="Email" 
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}/>
-          <input 
-            type="password"
-            value={registerPassword}
-            placeholder="Password" 
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-            />
+        <div className="LoginBox">
+          <div>
+            <h3 style={{"font-size": "36px"}}>
+              Login
+            </h3>
+          </div>
 
-          <button onClick={registerUser}>
-            Create Account
-          </button>
-        </div>
+          <div>
+            <input
+              class="form-field"
+              value={loginEmail}
+              placeholder="Email"
+              onChange={(event) => {
+                setLoginEmail(event.target.value);
+              }}/>
+            <input
+              class="form-field"
+              value={loginPassword}
+              type="password"
+              placeholder="Password."
+              onChange={(event) => {
+                setLoginPassword(event.target.value);
+              }}/>
 
-        <div>
-          <h3> Login Student</h3>
-          <input
-            value={loginEmail}
-            placeholder="Email."
-            onChange={(event) => {
-              setLoginEmail(event.target.value);
-            }}/>
-          <input
-            value={loginPassword}
-            type="password"
-            placeholder="Password."
-            onChange={(event) => {
-              setLoginPassword(event.target.value);
-            }}/>
-
-          <button onClick={loginUser}>
-            Login
-          </button>
-          <button onClick={logoutUser}>
-            Logout
+            <button onClick={loginUser}>
+              Login
             </button>
-        </div>
+            <button onClick={logoutUser}>
+              Logout
+              </button>
+          </div>
 
+          <div>
+            <h3> Register</h3>
+            <input
+              class="form-field"
+              value={registerEmail}
+              placeholder="Email" 
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}/>
+            <input 
+              class="form-field"
+              type="password"
+              value={registerPassword}
+              placeholder="Password" 
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+              />
+
+            <button onClick={registerUser}>
+              Create Account
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -9,9 +9,8 @@ const port = process.env.PORT || 5000;
 const uri = process.env.ATLAS_URI;
 
 const app = express();
-
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
 const server = http.createServer(app);
 
