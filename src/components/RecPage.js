@@ -79,6 +79,10 @@ function RecPage({ courseList }) {
                 </div>
             </div>
             <div className="RecBox">
+                <a href="/settings">
+                    <button>Settings</button>
+                </a>
+                <h1></h1>
                 Fields:
                 <input
                 class="form-field" 

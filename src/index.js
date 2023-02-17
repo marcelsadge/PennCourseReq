@@ -14,8 +14,9 @@ function PennRec() {
   return (
     <Router>
       <Routes>
-        <Route path = "/" element = {<SettingsPage />}/>
+        <Route path = "/" element = {<RecPage />}/>
         <Route path = "/rec" element = {<RecPage courseList={courseList} />}/>
+        <Route path = "/settings" element = {<SettingsPage />}/>
       </Routes>
     </Router>
   );

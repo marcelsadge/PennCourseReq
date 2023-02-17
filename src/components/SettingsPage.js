@@ -101,26 +101,6 @@ function SettingsPage({ courseList }) {
                 <button onClick={checkNewPassword}>
                     Update
                 </button>
-                <input 
-                class="form-field"
-                placeholder="Work Required (Maximum Work Required)" 
-                onChange={(event) => {
-                    setWorkRequired(event.target.value);
-                }}
-                />
-                <input 
-                class="form-field"
-                placeholder="Instructor Quality (Minimum Instructor Quality)" 
-                onChange={(event) => {
-                    setInsQuality(event.target.value);
-                }}
-                />
-                <button onClick={getCourseRecommendation}>
-                    Get Course Recommendation
-                </button>
-                <button onClick={refreshPage}>
-                    Reload
-                </button>
             </div>
             <div>
                 {count == 1 &&
