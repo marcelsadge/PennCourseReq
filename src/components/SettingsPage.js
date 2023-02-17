@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import JsonDataDisplay from "./CourseDataComponentDisplay";
 //import { getAllCourses } from "../backend/coursesApi";
+import { Grid, Slider } from  '@mui/material';
 
 import "./SettingsPage.css";
 
@@ -77,7 +78,7 @@ function SettingsPage({ courseList }) {
                 </div>
             </div>
             <div className="RecBox">
-                Settings:
+                <h2>Settings</h2>
                 <h1> </h1>
                 <p>Change Password</p>
                 <input
@@ -105,6 +106,17 @@ function SettingsPage({ courseList }) {
                 <a href="/">
                     <button>Return Home</button>
                 </a>
+                <Grid item xs={6}>
+                    <Slider
+                        value={difficulty}
+                        min={0}
+                        max={1100000000}
+                        step={10000000}
+                        onChange={(e, newValue) => checkNewPassword(newValue)}
+                        valueLabelDisplay='auto'
+                        valueLabelFormat={value => <div>{value / 1000000}</div>}
+                    />
+                </Grid>
             </div>
             <div>
                 {count == 1 &&
