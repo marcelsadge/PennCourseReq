@@ -101,6 +101,10 @@ function SettingsPage({ courseList }) {
                 <button onClick={checkNewPassword}>
                     Update
                 </button>
+                <h1> </h1>
+                <a href="/">
+                    <button>Return Home</button>
+                </a>
             </div>
             <div>
                 {count == 1 &&
