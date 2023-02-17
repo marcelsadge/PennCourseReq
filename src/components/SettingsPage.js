@@ -13,6 +13,10 @@ function SettingsPage({ courseList }) {
     const [insQuality, setInsQuality] = useState(0);
     const [workRequired, setWorkRequired] = useState(4);
 
+    const [oldPassword, setOldPassword] = useState('');
+    const[newPassword, setNewPassword] = useState('');
+    const [reenteredPassword, setReenteredPassword] = useState('');
+
     const refreshPage = () => {
         window.location.reload(false);
     }
@@ -46,6 +50,17 @@ function SettingsPage({ courseList }) {
         setCourseData(Object.values(recs));
     };
 
+    // Checks if entered passwords match, and are unique from old password
+    // TODO: Update logic for backend
+    const checkNewPassword = () => {
+        if (newPassword !== reenteredPassword) {
+            console.log("Entered passwords do not match");
+        }
+        if (newPassword === oldPassword || reenteredPassword === oldPassword) {
+            console.log("New password cannot be same as old one");
+        }
+    };
+
     useEffect(() => {
         //getCourseData();
         for (const element in courseData) {
@@ -63,25 +78,29 @@ function SettingsPage({ courseList }) {
             </div>
             <div className="RecBox">
                 Settings:
+                <h1> </h1>
+                <p>Change Password</p>
                 <input
                 class="form-field" 
-                placeholder="Major (CIS, MEAM, etc)" 
+                placeholder="Current Password" 
                 onChange={(event) => {
-                    setMajor(event.target.value);
+                    setOldPassword(event.target.value);
                 }}/>
                 <input 
                 class="form-field"
-                placeholder="Courses Taken (Comma Seperated - No Space)" 
+                placeholder="New Password" 
                 onChange={(event) => {
-                    setCoursesTaken(event.target.value);
+                    setNewPassword(event.target.value);
                 }}/>
                 <input 
                 class="form-field"
-                placeholder="Course Difficulty (Maximum Course Difficulty)" 
+                placeholder="Re-enter New Password" 
                 onChange={(event) => {
-                    setDifficulty(event.target.value);
-                }}
-                />
+                    setReenteredPassword(event.target.value);
+                }}/>
+                <button onClick={checkNewPassword}>
+                    Update
+                </button>
                 <input 
                 class="form-field"
                 placeholder="Work Required (Maximum Work Required)" 

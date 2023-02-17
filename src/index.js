@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './index.css';
 import HomePage from './components/HomePage';
 import RecPage from './components/RecPage';
+import SettingsPage from './components/SettingsPage';
 
 import courseList from './components/response.json';
 
@@ -13,7 +14,7 @@ function PennRec() {
   return (
     <Router>
       <Routes>
-        <Route path = "/" element = {<RecPage />}/>
+        <Route path = "/" element = {<SettingsPage />}/>
         <Route path = "/rec" element = {<RecPage courseList={courseList} />}/>
       </Routes>
     </Router>
