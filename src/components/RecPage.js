@@ -73,6 +73,11 @@ function RecPage({ courseList }) {
 
     return (
         <div className="RecContainer">
+            <div className="NavBar">
+                <div className="Title">
+                <h1>PennCourseReq</h1>
+                </div>
+            </div>
             <div className="RecBox">
                 Fields:
                 <input
