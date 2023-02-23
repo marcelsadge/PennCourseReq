@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import JsonDataDisplay from "./CourseDataComponentDisplay";
 //import { getAllCourses } from "../backend/coursesApi";
+import { Grid, Slider, Container } from  '@mui/material';
 
 import "./RecPage.css";
 
@@ -9,9 +10,9 @@ function RecPage({ courseList }) {
     const [courseData, setCourseData] = useState(courseList);
     const [coursesTaken, setCoursesTaken] = useState("");
     const [major, setMajor] = useState("");
-    const [difficulty, setDifficulty] = useState(4);
-    const [insQuality, setInsQuality] = useState(0);
-    const [workRequired, setWorkRequired] = useState(4);
+    const [difficulty, setDifficulty] = useState([0,4]);
+    const [insQuality, setInsQuality] = useState([0,4]);
+    const [workRequired, setWorkRequired] = useState([0,4]);
 
     const refreshPage = () => {
         window.location.reload(false);
@@ -103,6 +104,53 @@ function RecPage({ courseList }) {
                     setDifficulty(event.target.value);
                 }}
                 />
+                <Container>
+                <Grid container spacing={6}>
+                    <Grid item xs={4}>
+                        <p>Course Difficulty</p>
+                        <Slider
+                            value={difficulty}
+                            min={0}
+                            max={4}
+                            step={0.01}
+                            onChange={(e, newValue) => setDifficulty(newValue)}
+                            valueLabelDisplay='auto'
+                            valueLabelFormat={value => <div>{value}</div>}
+                            sx={{color: '#BBBBBB'}}
+                        />
+                    </Grid>
+                </Grid>
+                <Grid container spacing={6}>
+                    <Grid item xs={4}>
+                        <p>Work Required</p>
+                        <Slider
+                            value={workRequired}
+                            min={0}
+                            max={4}
+                            step={0.01}
+                            onChange={(e, newValue) => setWorkRequired(newValue)}
+                            valueLabelDisplay='auto'
+                            valueLabelFormat={value => <div>{value}</div>}
+                            sx={{color: '#BBBBBB'}}
+                        />
+                    </Grid>
+                </Grid>
+                <Grid container spacing={6}>
+                    <Grid item xs={4}>
+                        <p>Instructor Quality</p>
+                        <Slider
+                            value={insQuality}
+                            min={0}
+                            max={4}
+                            step={0.01}
+                            onChange={(e, newValue) => setInsQuality(newValue)}
+                            valueLabelDisplay='auto'
+                            valueLabelFormat={value => <div>{value}</div>}
+                            sx={{color: '#BBBBBB'}}
+                        />
+                    </Grid>
+                </Grid>
+                </Container>
                 <input 
                 class="form-field"
                 placeholder="Work Required (Maximum Work Required)" 

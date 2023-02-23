@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import JsonDataDisplay from "./CourseDataComponentDisplay";
 //import { getAllCourses } from "../backend/coursesApi";
-import { Grid, Slider } from  '@mui/material';
+import { Grid, Slider, Container } from  '@mui/material';
 
 import "./SettingsPage.css";
 
@@ -10,7 +10,7 @@ function SettingsPage({ courseList }) {
     const [courseData, setCourseData] = useState(courseList);
     const [coursesTaken, setCoursesTaken] = useState("");
     const [major, setMajor] = useState("");
-    const [difficulty, setDifficulty] = useState(4);
+    const [difficulty, setDifficulty] = useState([0,4]);
     const [insQuality, setInsQuality] = useState(0);
     const [workRequired, setWorkRequired] = useState(4);
 
@@ -106,17 +106,21 @@ function SettingsPage({ courseList }) {
                 <a href="/">
                     <button>Return Home</button>
                 </a>
-                <Grid item xs={6}>
-                    <Slider
-                        value={difficulty}
-                        min={0}
-                        max={1100000000}
-                        step={10000000}
-                        onChange={(e, newValue) => checkNewPassword(newValue)}
-                        valueLabelDisplay='auto'
-                        valueLabelFormat={value => <div>{value / 1000000}</div>}
-                    />
+                <Container>
+                <Grid container spacing={6}>
+                    <Grid item xs={4}>
+                        <Slider
+                            value={difficulty}
+                            min={0}
+                            max={4}
+                            step={0.01}
+                            onChange={(e, newValue) => setDifficulty(newValue)}
+                            valueLabelDisplay='auto'
+                            valueLabelFormat={value => <div>{value}</div>}
+                        />
+                    </Grid>
                 </Grid>
+                </Container>
             </div>
             <div>
                 {count == 1 &&
