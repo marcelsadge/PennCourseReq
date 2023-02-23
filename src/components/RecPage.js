@@ -54,7 +54,8 @@ function RecPage({ courseList }) {
             if (workReq == null) {
                 workReq = 5;
             }
-            if (diff < difficulty && courseId.includes(major) && workReq <= workRequired && insQuality <= insQual) {
+            if (diff <= difficulty[1] && diff >= difficulty[0] && courseId.includes(major) && 
+                workReq <= workRequired[1] && workReq >= workRequired[0] && insQual >= insQuality[0] && insQual <= insQuality[1]) {
                 if (!courseArr.includes(courseId)) {
                     recs[counter++] = courseData[element]; 
                 }
@@ -97,13 +98,6 @@ function RecPage({ courseList }) {
                 onChange={(event) => {
                     setCoursesTaken(event.target.value);
                 }}/>
-                <input 
-                class="form-field"
-                placeholder="Course Difficulty (Maximum Course Difficulty)" 
-                onChange={(event) => {
-                    setDifficulty(event.target.value);
-                }}
-                />
                 <Container>
                 <Grid container spacing={6}>
                     <Grid item xs={4}>
@@ -151,20 +145,6 @@ function RecPage({ courseList }) {
                     </Grid>
                 </Grid>
                 </Container>
-                <input 
-                class="form-field"
-                placeholder="Work Required (Maximum Work Required)" 
-                onChange={(event) => {
-                    setWorkRequired(event.target.value);
-                }}
-                />
-                <input 
-                class="form-field"
-                placeholder="Instructor Quality (Minimum Instructor Quality)" 
-                onChange={(event) => {
-                    setInsQuality(event.target.value);
-                }}
-                />
                 <button onClick={getCourseRecommendation}>
                     Get Course Recommendation
                 </button>
