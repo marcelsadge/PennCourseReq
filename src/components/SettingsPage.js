@@ -3,37 +3,24 @@ import JsonDataDisplay from "./CourseDataComponentDisplay";
 //import { getAllCourses } from "../backend/coursesApi";
 import { Grid, Slider, Container } from  '@mui/material';
 
-import "./RecPage.css";
+import "./SettingsPage.css";
 
-function RecPage({ courseList }) {
+function SettingsPage({ courseList }) {
     const [count, setCount] = useState(0);
     const [courseData, setCourseData] = useState(courseList);
     const [coursesTaken, setCoursesTaken] = useState("");
     const [major, setMajor] = useState("");
     const [difficulty, setDifficulty] = useState([0,4]);
-    const [insQuality, setInsQuality] = useState([0,4]);
-    const [workRequired, setWorkRequired] = useState([0,4]);
+    const [insQuality, setInsQuality] = useState(0);
+    const [workRequired, setWorkRequired] = useState(4);
+
+    const [oldPassword, setOldPassword] = useState('');
+    const[newPassword, setNewPassword] = useState('');
+    const [reenteredPassword, setReenteredPassword] = useState('');
 
     const refreshPage = () => {
         window.location.reload(false);
     }
-
-    const getCourseData = async () => {
-        const data = await fetch("https://penncoursereview.com/api/base/2023A/search/courses/?attributes=EUMS", {
-            method: "GET",
-        }).then(response => {
-            return response.text()
-        })
-        .then((result) => {
-            return result.data;
-        });
-
-        for (const element in data) {
-            const courseId = data[element]["id"];
-            data[element]["id"] = courseId.replace("-", "");
-        }
-        setCourseData(data);
-    };
 
     const getCourseRecommendation = () => {
         setCount(1);
@@ -54,8 +41,7 @@ function RecPage({ courseList }) {
             if (workReq == null) {
                 workReq = 5;
             }
-            if (diff <= difficulty[1] && diff >= difficulty[0] && courseId.includes(major) && 
-                workReq <= workRequired[1] && workReq >= workRequired[0] && insQual >= insQuality[0] && insQual <= insQuality[1]) {
+            if (diff < difficulty && courseId.includes(major) && workReq <= workRequired && insQuality <= insQual) {
                 if (!courseArr.includes(courseId)) {
                     recs[counter++] = courseData[element]; 
                 }
@@ -63,6 +49,17 @@ function RecPage({ courseList }) {
         }
         console.log(recs);
         setCourseData(Object.values(recs));
+    };
+
+    // Checks if entered passwords match, and are unique from old password
+    // TODO: Update logic for backend
+    const checkNewPassword = () => {
+        if (newPassword !== reenteredPassword) {
+            console.log("Entered passwords do not match");
+        }
+        if (newPassword === oldPassword || reenteredPassword === oldPassword) {
+            console.log("New password cannot be same as old one");
+        }
     };
 
     useEffect(() => {
@@ -81,27 +78,37 @@ function RecPage({ courseList }) {
                 </div>
             </div>
             <div className="RecBox">
-                <a href="/settings">
-                    <button>Settings</button>
-                </a>
-                <h1></h1>
-                Fields:
+                <h2>Settings</h2>
+                <h1> </h1>
+                <p>Change Password</p>
                 <input
                 class="form-field" 
-                placeholder="Major (CIS, MEAM, etc)" 
+                placeholder="Current Password" 
                 onChange={(event) => {
-                    setMajor(event.target.value);
+                    setOldPassword(event.target.value);
                 }}/>
                 <input 
                 class="form-field"
-                placeholder="Courses Taken (Comma Seperated - No Space)" 
+                placeholder="New Password" 
                 onChange={(event) => {
-                    setCoursesTaken(event.target.value);
+                    setNewPassword(event.target.value);
                 }}/>
+                <input 
+                class="form-field"
+                placeholder="Re-enter New Password" 
+                onChange={(event) => {
+                    setReenteredPassword(event.target.value);
+                }}/>
+                <button onClick={checkNewPassword}>
+                    Update
+                </button>
+                <h1> </h1>
+                <a href="/">
+                    <button>Return Home</button>
+                </a>
                 <Container>
                 <Grid container spacing={6}>
                     <Grid item xs={4}>
-                        <p>Course Difficulty</p>
                         <Slider
                             value={difficulty}
                             min={0}
@@ -110,47 +117,10 @@ function RecPage({ courseList }) {
                             onChange={(e, newValue) => setDifficulty(newValue)}
                             valueLabelDisplay='auto'
                             valueLabelFormat={value => <div>{value}</div>}
-                            sx={{color: '#BBBBBB'}}
-                        />
-                    </Grid>
-                </Grid>
-                <Grid container spacing={6}>
-                    <Grid item xs={4}>
-                        <p>Work Required</p>
-                        <Slider
-                            value={workRequired}
-                            min={0}
-                            max={4}
-                            step={0.01}
-                            onChange={(e, newValue) => setWorkRequired(newValue)}
-                            valueLabelDisplay='auto'
-                            valueLabelFormat={value => <div>{value}</div>}
-                            sx={{color: '#BBBBBB'}}
-                        />
-                    </Grid>
-                </Grid>
-                <Grid container spacing={6}>
-                    <Grid item xs={4}>
-                        <p>Instructor Quality</p>
-                        <Slider
-                            value={insQuality}
-                            min={0}
-                            max={4}
-                            step={0.01}
-                            onChange={(e, newValue) => setInsQuality(newValue)}
-                            valueLabelDisplay='auto'
-                            valueLabelFormat={value => <div>{value}</div>}
-                            sx={{color: '#BBBBBB'}}
                         />
                     </Grid>
                 </Grid>
                 </Container>
-                <button onClick={getCourseRecommendation}>
-                    Get Course Recommendation
-                </button>
-                <button onClick={refreshPage}>
-                    Reload
-                </button>
             </div>
             <div>
                 {count == 1 &&
@@ -186,4 +156,4 @@ function RecPage({ courseList }) {
     );
 }
 
-export default RecPage;
+export default SettingsPage;
