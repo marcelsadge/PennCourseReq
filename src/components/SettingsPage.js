@@ -103,7 +103,7 @@ function SettingsPage({ courseList }) {
                     Update
                 </button>
                 <h1> </h1>
-                <a href="/">
+                <a href="/rec">
                     <button>Return Home</button>
                 </a>
                 <Container>

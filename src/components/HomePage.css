@@ -6,20 +6,19 @@ body {
 .HomePage {
   text-align: center;
   justify-content: center;
-  padding: 300px;
   display: flex;
 }
 
-.NavBar {
+.NavBarr {
   background-color: #e0ccfc;
   position: fixed; 
   top: 0;
-  width: 100%;
+  width: 1000%;
   display: flex;
   flex-direction: row;
 }
 
-.Title {
+.RTitle {
   margin-left: 10px;
   background: #e0ccfc;
   color: #f8f4fc;
@@ -32,7 +31,7 @@ body {
   display: flex;
 }
 
-.LoginBox {
+.LoginBoxR {
   border-radius: 50px;
   background-color: white;
   align-items: center;

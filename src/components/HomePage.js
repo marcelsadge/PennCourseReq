@@ -6,8 +6,9 @@ import {
   signOut,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import "./HomePage.css";
 import { auth } from "../firebase-config";
+
+import "./HomePage.css";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -61,16 +62,13 @@ function HomePage() {
 
   return (
     <div>
-      <div className="NavBar">
-        <div className="Title">
+      <div className="NavBarr">
+        <div className="RTitle">
           <h1>PennCourseReq</h1>
-          <div className="Status">
-            {user?.email}
-          </div>
         </div>
       </div>
       <div className="HomePage">
-        <div className="LoginBox">
+        <div className="LoginBoxR">
           <div>
             <h3 style={{"font-size": "36px"}}>
               Login

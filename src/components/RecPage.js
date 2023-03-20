@@ -74,12 +74,13 @@ function RecPage({ courseList }) {
     }, [courseData]);
 
     return (
-        <div className="RecContainer">
-            <div className="NavBar">
+        <div>
+        <div className="NavBar">
                 <div className="Title">
                 <h1>PennCourseReq</h1>
                 </div>
             </div>
+        <div className="RecContainer">
             <div className="RecBox">
                 <a href="/settings">
                     <button>Settings</button>
@@ -182,6 +183,7 @@ function RecPage({ courseList }) {
                 </table>
                 }
             </div>
+        </div>
         </div>
     );
 }
