@@ -87,7 +87,7 @@ function HomePage() {
               class="form-field"
               value={loginPassword}
               type="password"
-              placeholder="Password."
+              placeholder="Password"
               onChange={(event) => {
                 setLoginPassword(event.target.value);
               }}/>
@@ -118,10 +118,11 @@ function HomePage() {
                 setPassword(event.target.value);
               }}
               />
-
+            <a href="/rec">
             <button onClick={registerUser}>
               Create Account
             </button>
+            </a>
           </div>
         </div>
       </div>
