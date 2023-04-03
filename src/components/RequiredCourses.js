@@ -1,12 +1,18 @@
+// If an array entry says "ELECTIVE", can choose any course not already in schedule
+// If an array has a course code with no number (ex "CIS" instead of "CIS1600"), 
+//      can choose any course in that subject not already in schedule
+
+const collegeMajors = ["AFRICANA STUDIES", "ANCIENT HISTORY", "ANTHROPOLOGY", "ARCHITECTURE", "BIOCHEMISTRY", "BIOLOGY"];
+
 const requiredCourses = [
     [["AFRICANA STUDIES"], ["AFRC1001", "AFRC2002", "AFRC2325", "AFRC3500"]],
     [["ANCIENT HISTORY"], []],
     [["ARCHITECTURE"], ["ARCH1020", "ARCH2010", "ARCH2020", "ARCH3010", "ARCH3020", "ARCH4010", "ARCH4110", "ARCH4120", "ARTH1020", "ARATH1060", "ARTH2810"]],
-    [["BIOCHEMISTRY"], ["MATH1400", "MATH1401", "CHEM1021", "CHEM2410", "CHEM2420", "CHEM2210", "CHEM2220", "CHEM2510", "CHEM5510", "CHEM5520", "CHEM2230"]],
+    [["BIOCHEMISTRY"], ["MATH1400", "MATH1401", "CHEM1021", "CHEM1101", "CHEM1102", "CHEM2410", "CHEM2420", "CHEM2210", "CHEM2220", "CHEM2510", "CHEM5510", "CHEM5520", "CHEM2230"]],
     [["HISTORY OF ART"], ["ARTH3000"]],
     [["BIOENGINEERING"], ["BE1000", "ENGR1050", "BE2000", "BE2200", "BE2700", "BE3010", "BE3060", "BE3090", "BE3100", "BE3500", "BE4950", "BE4960", "MATH1400", "MATH1410", "ENM2400", "ENM3750", "PHYS0140", "PHYS0141", "CHEM1011", "CHEM1101", "CHEM1021", "CHEM1102", "BIOL1121", "BIOL1124", "BIOL2310"]],
     [["ANTHROPOLOGY"], ["ANTH0030", "ANTH4000"]],
-    [["BIOLOGY"], []],
+    [["BIOLOGY"], ["BIOL1101", "BIOL1102"]],
     [["CHEMISTRY"], ["CHEM1101", "CHEM1102", "CHEM2411", "CHEM2421", "MATH1400", "PHYS0150", "PHYS0151", "CHEM2210", "CHEM2220", "CHEM2230", "CHEM2510", "CHEM2610", "CHEM2460"]],
     [["MATHEMATICS"], ["MATH4100", "MATH3410"]],
     [["ENGLISH"], ["ENGL4991"]],
@@ -121,4 +127,34 @@ const requiredCourses = [
     [["STATISTICS"], ["STAT4300", "ECON0110", "WH1010", "WH2010", "MGMT3010", "ACCT1010", "ACCT1020", "BEP2500", "FNCE1000", "FNCE1010", "MKTG1010", "OIDD1010", "STAT1010", "STAT1020"]]
 ];
 
-export default requiredCourses;
+const chooseOne = [
+    [["AFRICANA STUDIES"], ["AFRC1060", "AFRC2430", "SOCI1060", "SOCI2430"], ["AFRC2010", "SOCI2010"], ["AFRC3999", "AFRC4990"], ["HIST"], ["ELECTIVE"]],
+    [["ANTHROPOLOGY"], ["ANTH0010", "ANTH0050"], ["ANTH0020", "ANTH0040"]],
+    [["ARCHITECTURE"], ["ARTH"]],
+    [["BIOCHEMISTRY"], ["CHEM1011", "CHEM1012"], ["PHYS0150", "PHYS0170"], ["PHYS0151", "PHYS0171"]],
+    [["BIOLOGY"], ["BIOL2810", "BIOL2010"], ["BIOL2310", "BIOL2140", "BIOL2110"], ["BIOL2410", "BIOL2610"]]
+];
+
+const chooseTwo = [
+    [["ANCIENT HISTORY"], ["ANCH0100", "ANCH0101", "ANCH0102"]]
+];
+
+const chooseThree = [
+    [["AFRICANA STUDIES"], ["AFRC"]]
+];
+
+const chooseFour = [
+    [["ANCIENT HISTORY"], ["ANCH", "CLST"]],
+    [["BIOLOGY"], ["BIOL"]]
+];
+
+const chooseSix = [
+    [["ANCIENT HISTORY"], ["ANCH", "CLST", "GREK", "LATN"]]
+];
+
+const chooseTen = [
+    [["ANTHROPOLOGY"], ["ANCH"]]
+];
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default { collegeMajors, requiredCourses, chooseOne, chooseTwo, chooseThree, chooseFour, chooseSix, chooseTen };
