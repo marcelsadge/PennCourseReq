@@ -3,7 +3,7 @@ import JsonDataDisplay from "./CourseDataComponentDisplay";
 //import { getAllCourses } from "../backend/coursesApi";
 import { Grid, Slider, Container } from  '@mui/material';
 
-import { requiredCourses, getIndexOfMajor } from './RequiredCourses.js';
+import { requiredCourses, chooseOne, getIndexOfMajor } from './RequiredCourses.js';
 
 import "./RecPage.css";
 
@@ -21,12 +21,11 @@ function RecPage({ courseList }) {
     const [insQuality, setInsQuality] = useState([0,4]);
     const [workRequired, setWorkRequired] = useState([0,4]);
     const [majorNew, setMajorNew] = useState(getInitialState);
-    const [test, setTest] = useState("here");
-
-    let overallDifficulty = 0;
-    let overallWork = 0;
-    let overallInsQual = 0;
-    let courseCount = 0;
+    const [courseCount, setCourseCount] = useState(0);
+    const [schedDiff, setSchedDiff] = useState(0.0);
+    const [schedWork, setSchedWork] = useState(0.0);
+    const [schedQual, setSchedQual] = useState(0.0);
+    const [test, setTest] = useState("");
 
     const refreshPage = () => {
         window.location.reload(false);
@@ -54,8 +53,13 @@ function RecPage({ courseList }) {
         let courseArr = coursesTaken.split(",");
         let counter = 1;
         let recs = {};
+        let courses = 0;
+        let overallDifficulty = 0;
+        let overallWork = 0;
+        let overallInsQual = 0;
 
         let reqCourses = requiredCourses.at(getIndexOfMajor(majorNew.toUpperCase(), requiredCourses)).at(1);
+        let choose1 = chooseOne.at(getIndexOfMajor(majorNew.toUpperCase(), requiredCourses));
 
         for (const element in courseData) {
             const courseId = courseData[element]["id"];
@@ -71,16 +75,39 @@ function RecPage({ courseList }) {
             if (workReq == null) {
                 workReq = 5;
             }
+
+            // required courses, difficulty and other attributes do not matter
+            if (reqCourses.includes(courseId)) {
+                if (!courseArr.includes(courseId)) {
+                    recs[counter++] = courseData[element];
+                    courses=courses+1;
+                    overallDifficulty = overallDifficulty + courseData[element]["difficulty"];
+                    overallWork = overallWork + courseData[element]["work_required"];
+                    overallInsQual = overallInsQual + courseData[element]["instructor_quality"];
+                }
+            }
+
+
+            // 
+
+            /*
             //if (diff <= difficulty[1] && diff >= difficulty[0] && courseId.includes(major) && 
             if (diff <= difficulty[1] && diff >= difficulty[0] && reqCourses.includes(courseId) && 
                 workReq <= workRequired[1] && workReq >= workRequired[0] && insQual >= insQuality[0] && insQual <= insQuality[1]) {
                 if (!courseArr.includes(courseId)) {
                     recs[counter++] = courseData[element]; 
+                    courses=courses+1;
                 }
             }
+            */
         }
         console.log(recs);
         setCourseData(Object.values(recs));
+        setCourseCount(courses);
+        setSchedDiff(Math.round(overallDifficulty / courses * 1000) / 1000);
+        setSchedWork(Math.round(overallWork / courses * 1000) / 1000);
+        setSchedQual(Math.round(overallInsQual / courses * 1000) / 1000);
+
     };
 
     useEffect(() => {
@@ -104,7 +131,7 @@ function RecPage({ courseList }) {
                     <button>Settings</button>
                 </a>
                 <h1></h1>
-                Fields: {test}
+                Fields: {schedDiff} {schedWork} {schedQual} {test}
                 <input
                 class="form-field" 
                 placeholder="Major (CIS, MEAM, etc)" 
