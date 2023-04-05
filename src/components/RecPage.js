@@ -3,9 +3,16 @@ import JsonDataDisplay from "./CourseDataComponentDisplay";
 //import { getAllCourses } from "../backend/coursesApi";
 import { Grid, Slider, Container } from  '@mui/material';
 
+import { requiredCourses, getIndexOfMajor } from './RequiredCourses.js';
+
 import "./RecPage.css";
 
 function RecPage({ courseList }) {
+    const getInitialState = () => {
+        const value = "Major";
+        return value;
+      };    
+
     const [count, setCount] = useState(0);
     const [courseData, setCourseData] = useState(courseList);
     const [coursesTaken, setCoursesTaken] = useState("");
@@ -13,6 +20,8 @@ function RecPage({ courseList }) {
     const [difficulty, setDifficulty] = useState([0,4]);
     const [insQuality, setInsQuality] = useState([0,4]);
     const [workRequired, setWorkRequired] = useState([0,4]);
+    const [majorNew, setMajorNew] = useState(getInitialState);
+    const [test, setTest] = useState("here");
 
     const refreshPage = () => {
         window.location.reload(false);
@@ -40,6 +49,9 @@ function RecPage({ courseList }) {
         let courseArr = coursesTaken.split(",");
         let counter = 1;
         let recs = {};
+
+        let reqCourses = requiredCourses.at(getIndexOfMajor(majorNew.toUpperCase(), requiredCourses)).at(1);
+
         for (const element in courseData) {
             const courseId = courseData[element]["id"];
             let diff = courseData[element]["difficulty"];
@@ -54,7 +66,8 @@ function RecPage({ courseList }) {
             if (workReq == null) {
                 workReq = 5;
             }
-            if (diff <= difficulty[1] && diff >= difficulty[0] && courseId.includes(major) && 
+            //if (diff <= difficulty[1] && diff >= difficulty[0] && courseId.includes(major) && 
+            if (diff <= difficulty[1] && diff >= difficulty[0] && reqCourses.includes(courseId) && 
                 workReq <= workRequired[1] && workReq >= workRequired[0] && insQual >= insQuality[0] && insQual <= insQuality[1]) {
                 if (!courseArr.includes(courseId)) {
                     recs[counter++] = courseData[element]; 
@@ -86,13 +99,53 @@ function RecPage({ courseList }) {
                     <button>Settings</button>
                 </a>
                 <h1></h1>
-                Fields:
+                Fields: {test}
                 <input
                 class="form-field" 
                 placeholder="Major (CIS, MEAM, etc)" 
                 onChange={(event) => {
                     setMajor(event.target.value);
                 }}/>
+                <select value={majorNew} onChange={(event) => {
+                    setMajorNew(event.target.value);
+                }}>
+                    <option value="Africana Studies">Africana Studies</option>
+                    <option value="Ancient History">Ancient History</option>
+                    <option value="Anthropology">Anthropology</option>
+                    <option value="Architecture">Architecture</option>
+                    <option value="Biochemistry">Biochemistry</option>
+                    <option value="Biology">Biology</option>
+                    <option value="Biophysics">Biophysics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Cinema And Media Studies">Cinema And Media Studies</option>
+                    <option value="Classical Studies: Classical Civilizations">Classical Studies: Classical Civilizations</option>
+                    <option value="Classical Studies: Classical Languages And Literature">Classical Studies: Classical Languages And Literature</option>
+                    <option value="Classical Studies: Mediterranean Archaeology">Classical Studies: Mediterranean Archaeology</option>
+                    <option value="Cognitive Science: Cognitive Neuroscience">Cognitive Science: Cognitive Neuroscience</option>
+                    <option value="Cognitive Science: Computation And Cognition">Cognitive Science: Computation And Cognition</option>
+                    <option value="Cognitive Science: Language And Mind">Cognitive Science: Language And Mind</option>
+                    <option value="Communication">Communication</option>
+                    <option value="Comparative Literature: (Trans)National Literatures">Comparative Literature: (Trans)National Literatures</option>
+                    <option value="Comparative Literature: Globalization">Comparative Literature: Globalization</option>
+                    <option value="Comparative Literature: Theory">Comparative Literature: Theory</option>
+                    <option value="Criminology">Criminology</option>
+                    <option value="Design">Design</option>
+                    <option value="Earth Sciences: Environmental Science">Earth Sciences: Environmental Science</option>
+                    <option value="Earth Sciences: Geology">Earth Sciences: Geology</option>
+                    <option value="Earth Sciences: Paleobiology">Earth Sciences: Paleobiology</option>
+                    <option value="East Asian Languages And Civilizations">East Asian Languages And Civilizations</option>
+                    <option value="Economics">Economics</option>
+                    <option value="English">English</option>
+                    <option value="Environmental Studies">Environmental Studies</option>
+                    <option value="Fine Arts">Fine Arts</option>
+                    <option value="French And Francophone Studies">French And Francophone Studies</option>
+                    <option value="Gender, Sexuality, And Women'S Studies">Gender, Sexuality, And Women'S Studies</option>
+                    <option value="German">German</option>
+                    <option value="Health And Societies">Health And Societies</option>
+                    <option value="Hispanic Studies">Hispanic Studies</option>
+                    <option value="History Of Art">History Of Art</option>
+                    <option value="History">History</option>
+                </select>
                 <input 
                 class="form-field"
                 placeholder="Courses Taken (Comma Seperated - No Space)" 
