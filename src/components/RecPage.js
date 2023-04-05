@@ -23,6 +23,11 @@ function RecPage({ courseList }) {
     const [majorNew, setMajorNew] = useState(getInitialState);
     const [test, setTest] = useState("here");
 
+    let overallDifficulty = 0;
+    let overallWork = 0;
+    let overallInsQual = 0;
+    let courseCount = 0;
+
     const refreshPage = () => {
         window.location.reload(false);
     }

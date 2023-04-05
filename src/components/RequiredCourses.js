@@ -245,6 +245,15 @@ const chooseTen = [
     [["HISTORY OF ART"], ["ARTH"]]
 ];
 
+function getIndexOfMajor(major, requiredCourses) {
+    for (let i = 0; i < requiredCourses.length; i++) {
+        if (requiredCourses.at(i).at(0) == major) {
+            return i;
+        }
+    }
+    return 0;
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export { collegeMajors, requiredCourses, chooseOne, chooseTwo, chooseThree, chooseFour, chooseFive, 
-                 chooseSix, chooseSeven, chooseEight, chooseNine, chooseTen };
+                 chooseSix, chooseSeven, chooseEight, chooseNine, chooseTen, getIndexOfMajor };
