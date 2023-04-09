@@ -3,7 +3,8 @@ import JsonDataDisplay from "./CourseDataComponentDisplay";
 //import { getAllCourses } from "../backend/coursesApi";
 import { Grid, Slider, Container } from  '@mui/material';
 
-import { requiredCourses, chooseOne, getIndexOfMajor } from './RequiredCourses.js';
+import { requiredCourses, chooseOne, chooseTwo, chooseThree, chooseFour, chooseFive, chooseSix,
+        chooseSeven, chooseEight, chooseNine, chooseTen, getIndexOfMajor } from './RequiredCourses.js';
 
 import "./RecPage.css";
 
@@ -29,6 +30,20 @@ function RecPage({ courseList }) {
 
     const refreshPage = () => {
         window.location.reload(false);
+    }
+
+    const addToList = (inArray, outList) => {
+        for (let i = 0; i < inArray.length; i++) {
+            let maj = inArray.at(i);
+            for (let j = 1; j < maj.length; j++) {
+                let clust = maj.at(j);
+                for (let k = 0; k < clust.length; k++) {
+                    if (!outList.includes(clust.at(k)) && clust.at(k).length > 4) {
+                        outList.push(clust.at(k));
+                    }
+                }
+            }
+        }
     }
 
     const getCourseData = async () => {
@@ -59,7 +74,22 @@ function RecPage({ courseList }) {
         let overallInsQual = 0;
 
         let reqCourses = requiredCourses.at(getIndexOfMajor(majorNew.toUpperCase(), requiredCourses)).at(1);
-        let choose1 = chooseOne.at(getIndexOfMajor(majorNew.toUpperCase(), requiredCourses));
+        let choose1 = chooseOne.at(getIndexOfMajor(majorNew.toUpperCase(), chooseOne));
+
+        let allCoursesList = [];
+        let allCoursesDict = {}
+
+        addToList(requiredCourses, allCoursesList);
+        addToList(chooseOne, allCoursesList);
+        addToList(chooseTwo, allCoursesList);
+        addToList(chooseThree, allCoursesList);
+        addToList(chooseFour, allCoursesList);
+        addToList(chooseFive, allCoursesList);
+        addToList(chooseSix, allCoursesList);
+        addToList(chooseSeven, allCoursesList);
+        addToList(chooseEight, allCoursesList);
+        addToList(chooseNine, allCoursesList);
+        addToList(chooseTen, allCoursesList);
 
         for (const element in courseData) {
             const courseId = courseData[element]["id"];
@@ -74,6 +104,10 @@ function RecPage({ courseList }) {
             }
             if (workReq == null) {
                 workReq = 5;
+            }
+
+            if (allCoursesList.includes(courseId)) {
+                allCoursesDict[courseId] = courseData[element];
             }
 
             // required courses, difficulty and other attributes do not matter
@@ -101,12 +135,31 @@ function RecPage({ courseList }) {
             }
             */
         }
-        console.log(recs);
+        
+        for (let i = 1; i < choose1.length; i++) {
+            let clust = choose1.at(i);
+            for (let j = 0; j < clust.length; j++) {
+                if (Object.keys(allCoursesDict).includes(clust.at(j))) {
+                    setTest(allCoursesDict[clust.at(j)]["difficulty"]);
+                    let diff = allCoursesDict[clust.at(j)]["difficulty"];
+                    let workReq = allCoursesDict[clust.at(j)]["work_required"];
+                    let insQual = allCoursesDict[clust.at(j)]["instructor_quality"];
+
+                    if (diff >= difficulty[0] && diff <= difficulty[1] && workReq >= workRequired[0] && workReq <= workRequired[1] &&
+                        insQual >= insQuality[0] && insQual <= insQuality[1]) {
+                         recs[counter++] = allCoursesDict[clust.at(j)];
+                         break;
+                        }
+                }
+            }
+        }
+
         setCourseData(Object.values(recs));
         setCourseCount(courses);
         setSchedDiff(Math.round(overallDifficulty / courses * 1000) / 1000);
         setSchedWork(Math.round(overallWork / courses * 1000) / 1000);
         setSchedQual(Math.round(overallInsQual / courses * 1000) / 1000);
+        //setTest(choose1.length);
 
     };
 
