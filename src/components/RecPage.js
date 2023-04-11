@@ -32,6 +32,10 @@ function RecPage({ courseList }) {
         window.location.reload(false);
     }
 
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+      }
+
     const addToList = (inArray, outList) => {
         for (let i = 0; i < inArray.length; i++) {
             let maj = inArray.at(i);
@@ -75,9 +79,20 @@ function RecPage({ courseList }) {
 
         let reqCourses = requiredCourses.at(getIndexOfMajor(majorNew.toUpperCase(), requiredCourses)).at(1);
         let choose1 = chooseOne.at(getIndexOfMajor(majorNew.toUpperCase(), chooseOne));
+        let choose2 = chooseTwo.at(getIndexOfMajor(majorNew.toUpperCase(), chooseTwo));
+        let choose3 = chooseThree.at(getIndexOfMajor(majorNew.toUpperCase(), chooseThree));
+        let choose4 = chooseFour.at(getIndexOfMajor(majorNew.toUpperCase(), chooseFour));
+        let choose5 = chooseFive.at(getIndexOfMajor(majorNew.toUpperCase(), chooseFive));
+        let choose6 = chooseSix.at(getIndexOfMajor(majorNew.toUpperCase(), chooseSix));
+        let choose7 = chooseSeven.at(getIndexOfMajor(majorNew.toUpperCase(), chooseSeven));
+        let choose8 = chooseEight.at(getIndexOfMajor(majorNew.toUpperCase(), chooseEight));
+        let choose9 = chooseNine.at(getIndexOfMajor(majorNew.toUpperCase(), chooseNine));
+        let choose10 = chooseTen.at(getIndexOfMajor(majorNew.toUpperCase(), chooseTen));
 
         let allCoursesList = [];
-        let allCoursesDict = {}
+        let allCoursesDict = {};
+
+        let coursesChosen = [];
 
         addToList(requiredCourses, allCoursesList);
         addToList(chooseOne, allCoursesList);
@@ -115,6 +130,7 @@ function RecPage({ courseList }) {
                 if (!courseArr.includes(courseId)) {
                     recs[counter++] = courseData[element];
                     courses=courses+1;
+                    coursesChosen.push(courseId);
                     overallDifficulty = overallDifficulty + courseData[element]["difficulty"];
                     overallWork = overallWork + courseData[element]["work_required"];
                     overallInsQual = overallInsQual + courseData[element]["instructor_quality"];
@@ -137,25 +153,52 @@ function RecPage({ courseList }) {
         }
         
         for (let i = 1; i < choose1.length; i++) {
+
             let clust = choose1.at(i);
+            let num_courses_chosen = 0;
+
             for (let j = 0; j < clust.length; j++) {
+
+
                 if (Object.keys(allCoursesDict).includes(clust.at(j))) {
-                    setTest(allCoursesDict[clust.at(j)]["difficulty"]);
+                    //setTest(allCoursesDict[clust.at(j)]["difficulty"]);
                     let diff = allCoursesDict[clust.at(j)]["difficulty"];
                     let workReq = allCoursesDict[clust.at(j)]["work_required"];
                     let insQual = allCoursesDict[clust.at(j)]["instructor_quality"];
 
                     if (diff >= difficulty[0] && diff <= difficulty[1] && workReq >= workRequired[0] && workReq <= workRequired[1] &&
                         insQual >= insQuality[0] && insQual <= insQuality[1]) {
-                         recs[counter++] = allCoursesDict[clust.at(j)];
-                         break;
+                            courses=courses+1;
+                            coursesChosen.push(clust.at(j));
+                            num_courses_chosen=num_courses_chosen+1;
+                            overallDifficulty = overallDifficulty + allCoursesDict[clust.at(j)]["difficulty"];
+                            overallWork = overallWork + allCoursesDict[clust.at(j)]["work_required"];
+                            overallInsQual = overallInsQual + allCoursesDict[clust.at(j)]["instructor_qualtiy"];
+                            recs[counter++] = allCoursesDict[clust.at(j)];
+                            break;
                         }
                 }
             }
-        }
+            
+            if (num_courses_chosen < 1) {
+                let randIndex = getRandomInt(clust.length);
+                let randCourse = clust.at(randIndex);
 
+                while (coursesChosen.includes(randCourse)) {
+                    randIndex = getRandomInt(clust.length);
+                    randCourse = clust.at(randIndex);
+                }
+
+                coursesChosen.push(randCourse);
+
+                let randCourseJSON = {"id": randCourse, "title": "N/A", "description": "No description available", "semester": "N/A", "num_sections": 0, "course_quality": null, instructor_quality: null, "difficulty": null, "work_required": null, "recommendation_score": null};
+                recs[counter++] = randCourseJSON;
+            }
+            
+
+        }
         setCourseData(Object.values(recs));
-        setCourseCount(courses);
+        setCourseCount(courses); 
         setSchedDiff(Math.round(overallDifficulty / courses * 1000) / 1000);
         setSchedWork(Math.round(overallWork / courses * 1000) / 1000);
         setSchedQual(Math.round(overallInsQual / courses * 1000) / 1000);
