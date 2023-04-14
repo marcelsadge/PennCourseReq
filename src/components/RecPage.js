@@ -194,9 +194,9 @@ function RecPage({ courseList }) {
                 let randCourseJSON = {"id": randCourse, "title": "N/A", "description": "No description available", "semester": "N/A", "num_sections": 0, "course_quality": null, instructor_quality: null, "difficulty": null, "work_required": null, "recommendation_score": null};
                 recs[counter++] = randCourseJSON;
             }
-            
-
+        
         }
+
         setCourseData(Object.values(recs));
         setCourseCount(courses); 
         setSchedDiff(Math.round(overallDifficulty / courses * 1000) / 1000);
