@@ -1,11 +1,16 @@
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
+import Header from './components/Header/index';
+
+import HomePage from './components/HomePage/index';
+import RecPage from './components/RecPage/index';
+import SettingsPage from './components/SettingsPage/index';
+
 import './index.css';
-import HomePage from './components/HomePage';
-import RecPage from './components/RecPage';
-import SettingsPage from './components/SettingsPage';
 
 import courseList from './components/response.json';
 
@@ -13,6 +18,7 @@ import courseList from './components/response.json';
 function PennRec() {
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path = "/" element = {<HomePage />}/>
         <Route path = "/rec" element = {<RecPage courseList={courseList} />}/>

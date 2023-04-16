@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import JsonDataDisplay from "./CourseDataComponentDisplay";
+import JsonDataDisplay from "../CourseDataComponentDisplay";
 //import { getAllCourses } from "../backend/coursesApi";
 import { Grid, Slider, Container } from  '@mui/material';
 
-import "./SettingsPage.css";
+import "./index.css";
 
 function SettingsPage({ courseList }) {
     const [count, setCount] = useState(0);

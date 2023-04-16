@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import JsonDataDisplay from "./CourseDataComponentDisplay";
 //import { getAllCourses } from "../backend/coursesApi";
 import { Grid, Slider, Container } from  '@mui/material';
 
 import { requiredCourses, collegeMajors, collegeRequirements, chooseOne, chooseTwo, chooseThree, chooseFour, chooseFive, chooseSix,
-        chooseSeven, chooseEight, chooseNine, chooseTen, getIndexOfMajor } from './RequiredCourses.js';
+        chooseSeven, chooseEight, chooseNine, chooseTen, getIndexOfMajor } from '../RequiredCourses';
 
-import "./RecPage.css";
+import "./index.css";
 
 function RecPage({ courseList }) {
     const getInitialState = () => {
