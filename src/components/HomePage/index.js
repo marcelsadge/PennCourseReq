@@ -90,7 +90,6 @@ function HomePage() {
             onChange={(event) => {
               setLoginPassword(event.target.value);
             }}/>
-
           <button onClick={loginUser}>
             Login
           </button>
