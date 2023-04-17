@@ -41,6 +41,19 @@ const whartonConcentrations = ["ACCOUNTING", "BEHAVIORAL ECONOMICS", "BUSINESS A
                       "MARKETING AND COMMUNICATIONS", "MARKETING AND OPERATIONS MANAGEMENT", "MARKETING", "OPERATIONS, INFORMATION, AND DECISIONS",
                       "REAL ESTATE", "RETAILING", "SOCIAL IMPACT AND RESPONSIBILITY", "STATISTICS"];
 
+const courseCodes = {"Accounting": "ACCT", "Africana Studies": "AFRC", "Ancient History": "ANCH", "Arabic": "ARAB", "Anthropology": "ANTH", "Architecture": "ARCH", "Art History": "ARTH",
+                     "Asian American Studies": "ASAM", "Astronomy": "ASTR", "Biochemistry": "BCHE", "Bioengineering": "BE", "Biology": "BIOL", "Business Economics & Public Policy": "BEPP",
+                     "Chemical & Biomolecular Engineering": "CBE", "Chemistry": "CHEM", "Chinese": "CHIN", "Cinema and Media Studies": "CIMS", "Classical Studies": "CLST", "Cognitive Science": "COGS",
+                     "Communications": "COMM", "Comparative Literature": "COML", "Criminology": "CRIM", "Design": "DSGN", "Earth and Environmental Science": "EESC", "East Asian Language & Civilization": "EALC",
+                     "Economics": "ECON", "Education": "EDUC", "Electrical & Systems Engineering": "ESE", "Engineering & Applied Science": "EAS", "Engineering Mathematics": "ENM", "English": "ENGL",
+                     "Environmental Studies": "ENVS", "Finance": "FNCE", "Fine Arts": "FNAR", "French": "FREN", "Gender, Sexuality, & Women's Studies": "GSWS", "German": "GRMN", "Health & Societies": "HSOC",
+                     "Healthcare Management": "HCMG", "History": "HIST", "International Relations": "INTR", "Italian": "ITAL", "Japanese": "JPAN", "Jewish Studies": "JWST", "Korean": "KORN", "Latin": "LATN",
+                     "Legal Studies & Business Ethics": "LGST", "Linguistics": "LING", "Logic, Information, and Computation": "LGIC", "Management": "MGMT", "Marketing": "MKTG", "Materials Science and Engineering": "MSE",
+                     "Mathematics": "MATH", "Mechanical Engineering": "MEAM", "Music": "MUSC", "Networked and Social Systems Engineering": "NETS", "Nursing": "NURS", "Operations, Information, and Decisions": "OIDD",
+                     "Philosopy": "PHIL", "Philosophy, Politics, and Economics": "PPE", "Physics": "PHYS", "Political Science": "PSCI", "Psychology": "PSYC", "Real Estate": "REAL", "Religious Studies": "RELS", "Russian": "RUSS",
+                     "Russian and East European Studies": "REES", "Science, Technology & Society": "STSC", "Sociology": "SOCI", "South Asia Studies": "SAST", "Spanish": "SPAN", "Statistics": "STAT",
+                     "Theatre Arts": "THAR", "Urban Studies": "URBS", "Visual Studies": "VLST"};
+
 const collegeRequirements = [
     [["CROSS CULTURAL ANALYSIS"], ["AFRC1475", "AFRC1500", "AFRC2230", "AFRC3350", "ANCH0100", "ANCH0101", "ANCH1100", "ANTH0002", "ANTH0020", "ATNTH0105", "ANTH0120", "ANTH1169", "ANTH1300", "ANTH1500", "ANTH2230", "ARTH1010", "ARTH1060", "ARTH1080", "ARTH1090", "ARTH2250", "ARTH2500", "CIMS0080", "CIMS0092", "CIMS0320", "CIMS0790", "CIMS1010", "CIMS1020", "CIMS1190", "CIMS1230", "CIMS1640", "CIMS1900", "CIMS1901",
                      "CIMS2230", "CIMS3602", "CLST0101", "CLST1100", "CLST1300", "CLST1700", "CLST3401", "COML0004", "COML0010", "COML0080", "COML0081", "COML0103", "COML0320", "COML0335", "COML0615", "COML1011", "COML1022", "COML1025", "COML1097", "COML1190", "COML1201", "COML1231", "COML1311", "COML1427", "COML1890", "COML2007", "COML2180", "COML2190", "COML2390", "COML3330", "COMM2620", "COMM3010", "COMM3940",
@@ -518,4 +531,4 @@ function getIndexOfMajor(major, requiredCourses) {
 // eslint-disable-next-line import/no-anonymous-default-export
 export { collegeMajors, engineeringMajors, nursingMajors, whartonConcentrations,
             collegeRequirements, requiredCourses, chooseOne, chooseTwo, chooseThree, chooseFour, chooseFive, chooseSix, 
-            chooseSeven, chooseEight, chooseNine, chooseTen, getIndexOfMajor };
+            chooseSeven, chooseEight, chooseNine, chooseTen, courseCodes, getIndexOfMajor };
