@@ -9,6 +9,7 @@ import Header from './components/Header/index';
 import HomePage from './components/HomePage/index';
 import RecPage from './components/RecPage/index';
 import SettingsPage from './components/SettingsPage/index';
+import Footer from "./components/Footer";
 
 import './index.css';
 
@@ -18,6 +19,7 @@ import courseList from './components/response.json';
 function PennRec() {
   return (
     <Router>
+      <Footer />
       <Header />
       <Routes>
         <Route path = "/" element = {<HomePage />}/>
