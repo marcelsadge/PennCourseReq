@@ -22,6 +22,11 @@ import {
 function HomePage() {
   const navigate = useNavigate();
 
+  const [success, setSuccess] = useState({
+    type: 'success',
+    text: 'Account Created Successfully',
+    show: false
+  });
   const [alert, setAlert] = useState({
     type: 'error',
     text: 'Invalid Email/Password',
@@ -37,6 +42,22 @@ function HomePage() {
   const [registerPassword, setPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+
+  const openSuccessAlert = (type) => {
+    setSuccess({
+      type: type,
+      text: 'Account Created Successfully',
+      show: true
+    })
+  };
+
+  const closeSuccessAlert = () => {
+    setSuccess({
+      type: '',
+      text: '',
+      show: false
+    })
+  };
 
   const openRegisterAlert = (type) => {
     setAlert({
@@ -86,6 +107,7 @@ function HomePage() {
       setEmail("");
       setPassword("");
       console.log(user);
+      openSuccessAlert('success');
     } catch (error) {
       openRegisterAlert('error');
     }
@@ -113,6 +135,20 @@ function HomePage() {
 
   return (
     <div className="HomePage">
+      <Alert
+        header={'Register Success'}
+        btnText={'Close'}
+        text={success.text}
+        type={success.type}
+        show={success.show}
+        onClosePress={closeSuccessAlert}
+        pressCloseOnOutsideClick={true}
+        showBorderBottom={true}
+        alertStyles={{}}
+        headerStyles={{}}
+        textStyles={{}}
+        buttonStyles={{}}
+      />
       <Alert
         header={'Register Failed'}
         btnText={'Close'}
