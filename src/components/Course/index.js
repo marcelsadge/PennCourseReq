@@ -7,10 +7,7 @@ function Course({ info }) {
     return (
         <CourseContainer>
             <h1>
-                {info.td}
-            </h1>
-            <h1>
-                {info.title}
+                {info.id}:{info.title}
             </h1>
             <h2>
                 Description: 
