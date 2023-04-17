@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-//import { getAllCourses } from "../backend/coursesApi";
+import styled from 'styled-components';
 import { Grid, Slider, Container } from  '@mui/material';
 
 import { requiredCourses, collegeMajors, collegeRequirements, chooseOne, chooseTwo, chooseThree, chooseFour, chooseFive, chooseSix,
@@ -8,6 +8,16 @@ import { requiredCourses, collegeMajors, collegeRequirements, chooseOne, chooseT
 import Course from "../Course";
 
 import "./index.css";
+
+const Button = styled.button`
+  background-color: #081c5c;
+  color: white;
+  font-size: 16px;
+  padding: 10px 60px;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
 
 function RecPage({ courseList }) {
     const getInitialState = () => {
@@ -691,24 +701,24 @@ function RecPage({ courseList }) {
                         <option value="Visual Studies">Visual Studies</option>
                     </select>
                     <p></p>
-                    <button style={{"margin": 20}} onClick={getRequiredCourses}>Get Required Courses</button>
+                    <Button style={{"margin": 20}} onClick={getRequiredCourses}>Get Required Courses</Button>
                     </div>
                 </div>
                 <div style={{"background-color": "#dbeaff", "height": 520, "width": 100, "margin": 10, "flex": 1}}>
                     <p style={{"marginLeft": 10}}>Required Courses</p>
                     <div id="myCheckboxes" style={{"flex": 1, "marginLeft": 10, "height": 300, "overflow-y": "scroll"}}></div>
                     <div style={{"flex": 1}}>
-                        <button style={{"marginLeft": 10, "marginTop": 25, "display": "inline-block"}} onClick={submitTakenCourses}>Submit Courses Taken</button>
+                        <Button style={{"marginLeft": 10, "marginTop": 25, "display": "inline-block"}} onClick={submitTakenCourses}>Submit Courses Taken</Button>
                         <p style={{"color": "green", "marginLeft": 20, "display": "inline-block"}}>{successMessage}</p>
                     </div>
                 </div>
 
             </div>
 
-            <button onClick={getCourseRecommendation}>Get Course Recommendation</button>
-            <button onClick={refreshPage}>
+            <Button style={{"marginLeft": 10}} onClick={getCourseRecommendation}>Get Course Recommendation</Button>
+            <Button onClick={refreshPage}>
                     Reload
-            </button>
+            </Button>
                 {count == 1 &&
                 courseData.map((info) => {
                     return (<Course info={info} />);

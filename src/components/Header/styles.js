@@ -24,6 +24,12 @@ const HeaderText = styled.h1`
 `;
 
 const LogoutButton = styled.button`
+    background-color: crimson;
+    color: white;
+    font-size: 16px;
+    padding: 10px 60px;
+    border-radius: 5px;
+    cursor: pointer;
     margin-right: 20px;
 `;
 

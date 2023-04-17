@@ -15,6 +15,7 @@ const LoginBox = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 100px;
 `;
 
 const GreaterFieldBox = styled.div`

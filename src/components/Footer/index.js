@@ -29,7 +29,7 @@ const Row = styled.div`
   grid-template-columns: repeat(auto-fill, 
                          minmax(190px, 1fr));
   grid-gap: 20px;
-  margin-left: 200px;
+  margin-left: 300px;
 `;
    
 const FooterLink = styled.a`
@@ -67,10 +67,7 @@ function Footer () {
       <Container>
         <Row>
           <Column>
-            <Heading>About Us (Coming Soon)</Heading>
-          </Column>
-          <Column>
-            <Heading>Contact (Coming Soon)</Heading>
+            <Heading>Contact: pennrecbusiness@gmail.com</Heading>
           </Column>
         </Row>
         <AuthorHeading>Created by:{' '}
