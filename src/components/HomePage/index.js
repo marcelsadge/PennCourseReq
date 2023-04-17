@@ -8,6 +8,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../../firebase-config";
+import Alert from 'react-popup-alert';
 
 import { 
   ImageContainer, 
@@ -19,11 +20,53 @@ import {
 function HomePage() {
   const navigate = useNavigate();
 
+  const [alert, setAlert] = useState({
+    type: 'error',
+    text: 'Invalid Email/Password',
+    show: false
+  });
+  const [loginAlert, setLoginAlert] = useState({
+    type: 'error',
+    text: 'Invalid Email/Password',
+    show: false
+  });
   const [user, setUser] = useState({});
   const [registerEmail, setEmail] = useState("");
   const [registerPassword, setPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+
+  const openRegisterAlert = (type) => {
+    setAlert({
+      type: type,
+      text: 'Invalid Email/Password',
+      show: true
+    })
+  };
+
+  const closeRegisterAlert = () => {
+    setAlert({
+      type: '',
+      text: '',
+      show: false
+    })
+  };
+
+  const openLoginAlert = (type) => {
+    setLoginAlert({
+      type: type,
+      text: 'Invalid Email/Password',
+      show: true
+    })
+  };
+
+  const closeLoginAlert = () => {
+    setLoginAlert({
+      type: '',
+      text: '',
+      show: false
+    })
+  };
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -42,7 +85,7 @@ function HomePage() {
       setPassword("");
       console.log(user);
     } catch (error) {
-      console.log(error.message);
+      openRegisterAlert('error');
     }
   };
 
@@ -58,7 +101,7 @@ function HomePage() {
       navigate("/rec");
       console.log(user);
     } catch (error) {
-      console.log(error.message);
+      openLoginAlert('error');
     }
   };
 
@@ -68,6 +111,34 @@ function HomePage() {
 
   return (
     <div className="HomePage">
+      <Alert
+        header={'Register Failed'}
+        btnText={'Close'}
+        text={alert.text}
+        type={alert.type}
+        show={alert.show}
+        onClosePress={closeRegisterAlert}
+        pressCloseOnOutsideClick={true}
+        showBorderBottom={true}
+        alertStyles={{}}
+        headerStyles={{}}
+        textStyles={{}}
+        buttonStyles={{}}
+      />
+      <Alert
+        header={'Login Failed'}
+        btnText={'Close'}
+        text={loginAlert.text}
+        type={loginAlert.type}
+        show={loginAlert.show}
+        onClosePress={closeLoginAlert}
+        pressCloseOnOutsideClick={true}
+        showBorderBottom={true}
+        alertStyles={{}}
+        headerStyles={{}}
+        textStyles={{}}
+        buttonStyles={{}}
+      />
       <ImageContainer>
         <LoginBox>
           <Title>
