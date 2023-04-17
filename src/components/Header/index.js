@@ -1,9 +1,19 @@
 import React from 'react';
 
-import { AiFillControl } from 'react-icons/ai'
-import { MainHeader, HeaderContainer, HeaderText } from './styles';
+import { AiFillControl } from 'react-icons/ai';
+import { useNavigate, useLocation } from "react-router-dom";
+import { MainHeader, HeaderContainer, HeaderText, LogoutButton } from './styles';
 
 function Header () {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const isRecPage = location.pathname.includes("rec");
+
+    const logout = () => {
+        navigate("/");
+    };
+
     return (
         <MainHeader>
             <HeaderContainer>
@@ -12,6 +22,11 @@ function Header () {
                     PennCourseRec
                 </HeaderText>
             </HeaderContainer>
+            {isRecPage &&
+            <LogoutButton onClick={logout}>
+                Logout
+            </LogoutButton>
+            }
         </MainHeader>
     );
 }

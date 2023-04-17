@@ -8,6 +8,8 @@ const MainHeader = styled.header`
     padding: 10px;
     width: 100%;
     text-align: left;
+    justify-content: space-between;
+    align-items: center;
     background: #081c5c;
     position: relative;
 `;
@@ -22,4 +24,8 @@ const HeaderText = styled.h1`
     font-size: 20px;
 `;
 
-export { MainHeader, HeaderContainer, HeaderText };
+const LogoutButton = styled.button`
+    margin-right: 20px;
+`;
+
+export { MainHeader, HeaderContainer, HeaderText, LogoutButton };
