@@ -5,6 +5,8 @@ import { Grid, Slider, Container } from  '@mui/material';
 import { requiredCourses, collegeMajors, collegeRequirements, chooseOne, chooseTwo, chooseThree, chooseFour, chooseFive, chooseSix,
         chooseSeven, chooseEight, chooseNine, chooseTen, courseCodes, getIndexOfMajor } from '../RequiredCourses';
 
+import Course from "../Course";
+
 import "./index.css";
 
 function RecPage({ courseList }) {
@@ -438,7 +440,7 @@ function RecPage({ courseList }) {
 
     return (
         <div>
-            <p style={{"marginLeft": 10}}>Welcome to PennCourseRec! To start, please input your major and any preferences below. Then click 'Get Required Courses' to see the courses that are required for your major. For your convenience, you can
+            <p style={{"marginLeft": 10, "marginTop": 100}}>Welcome to PennCourseRec! To start, please input your major and any preferences below. Then click 'Get Required Courses' to see the courses that are required for your major. For your convenience, you can
                 check the box of any course you have taken already. Be sure to click 'Submit Courses Taken', then click the 'Get Course Recommnedation' button to see the courses still required to complete your major. Before starting a new search,
                 be sure to click the 'Refresh' button.</p>
             <p>{test}</p>
@@ -707,36 +709,11 @@ function RecPage({ courseList }) {
             <button onClick={refreshPage}>
                     Reload
             </button>
-                <div style={{"marginLeft": 30, "marginRight": 30}}>
                 {count == 1 &&
-                <table class="table table-striped">
-                    <thead>
-                        <tr style={{"backgroundColor": "#9cb8ff"}}>
-                        <th>Course ID</th>
-                        <th>Course Name</th>
-                        <th>Course Description</th>
-                        <th>Course Difficulty</th>
-                        <th>Work Required</th>
-                        <th>Instructor Quality</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {courseData.map((info)=>{
-                        return(
-                            <tr style={{"backgroundColor": "#dbdbdb"}}>
-                                <td >{info.id}</td>
-                                <td>{info.title}</td>
-                                <td>{info.description}</td>
-                                <td>{info.difficulty}</td>
-                                <td>{info.work_required}</td>
-                                <td>{info.instructor_quality}</td>
-                            </tr>
-                        )})
-                    }
-                    </tbody>
-                </table>
+                courseData.map((info) => {
+                    return (<Course info={info} />);
+                })
                 }
-            </div>
 
         </div>
     );

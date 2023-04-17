@@ -11,7 +11,6 @@ const MainHeader = styled.header`
     justify-content: space-between;
     align-items: center;
     background: #081c5c;
-    position: relative;
 `;
 
 const HeaderContainer = styled.div`

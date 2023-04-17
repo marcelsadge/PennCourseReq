@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import JsonDataDisplay from "../CourseDataComponentDisplay";
 //import { getAllCourses } from "../backend/coursesApi";
 import { Grid, Slider, Container } from  '@mui/material';
 

@@ -11,10 +11,12 @@ import { auth } from "../../firebase-config";
 import Alert from 'react-popup-alert';
 
 import { 
-  ImageContainer, 
+  ImageContainer,
+  GreaterFieldBox, 
   InputFieldBox, 
   LoginBox,
-  Title 
+  Title,
+  Button
 } from "./styles.js";
 
 function HomePage() {
@@ -141,54 +143,58 @@ function HomePage() {
       />
       <ImageContainer>
         <LoginBox>
-          <Title>
-              Login
-          </Title>
-          <InputFieldBox>
-            <input
-              class="form-field"
-              value={loginEmail}
-              placeholder="Email"
-              onChange={(event) => {
-                setLoginEmail(event.target.value);
-              }}/>
-            <input
-              class="form-field"
-              value={loginPassword}
-              type="password"
-              placeholder="Password."
-              onChange={(event) => {
-                setLoginPassword(event.target.value);
-              }}/>
-            <button onClick={loginUser}>
-              Login
-            </button>
-          </InputFieldBox>
-          <Title>
-            Register
-          </Title>
-          <InputFieldBox>
-            <input
-              class="form-field"
-              value={registerEmail}
-              placeholder="Email" 
-              onChange={(event) => {
-                setEmail(event.target.value);
-              }}/>
-            <input 
-              class="form-field"
-              type="password"
-              value={registerPassword}
-              placeholder="Password" 
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-              />
+          <GreaterFieldBox>
+            <Title>
+                Login
+            </Title>
+            <InputFieldBox>
+              <input
+                class="form-field"
+                value={loginEmail}
+                placeholder="Email"
+                onChange={(event) => {
+                  setLoginEmail(event.target.value);
+                }}/>
+              <input
+                class="form-field"
+                value={loginPassword}
+                type="password"
+                placeholder="Password."
+                onChange={(event) => {
+                  setLoginPassword(event.target.value);
+                }}/>
+              <Button onClick={loginUser}>
+                Login
+              </Button>
+            </InputFieldBox>
+          </GreaterFieldBox>
+          <GreaterFieldBox>
+            <Title>
+              Register
+            </Title>
+            <InputFieldBox>
+              <input
+                class="form-field"
+                value={registerEmail}
+                placeholder="Email" 
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}/>
+              <input 
+                class="form-field"
+                type="password"
+                value={registerPassword}
+                placeholder="Password" 
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
+                />
 
-            <button onClick={registerUser}>
-              Create Account
-            </button>
-          </InputFieldBox>
+              <Button onClick={registerUser}>
+                Create Account
+              </Button>
+            </InputFieldBox>
+          </GreaterFieldBox>
         </LoginBox>
       </ImageContainer>
     </div>

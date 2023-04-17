@@ -7,20 +7,26 @@ const ImageContainer = styled.div`
     justify-content: center;
     align-items: center;
     background-size: cover;
-    height: 1140px;
+    height: 1240px;
 `;
 
 const LoginBox = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+`;
+
+const GreaterFieldBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    align-items: center;
+    flex-direction: column;
 `;
 
 const InputFieldBox = styled.div`
     display: flex;
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
 `;
 
 const Title = styled.div`
@@ -29,4 +35,13 @@ const Title = styled.div`
     font-size: 36px;
 `;
 
-export { ImageContainer, LoginBox, InputFieldBox, Title };
+const Button = styled.button`
+  background-color: crimson;
+  color: white;
+  font-size: 16px;
+  padding: 10px 60px;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+export { ImageContainer, GreaterFieldBox, LoginBox, InputFieldBox, Title, Button };
